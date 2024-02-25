@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>skibididev</title>
+<!-- Specify the icon for iPhone home screen -->
+<link rel="apple-touch-icon" href="download.jpg">
+<style>
+  body {
+    background-color: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Disable scrolling */
+    flex-direction: column; /* Align elements vertically */
+  }
+  .title {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900; /* Heaviest font weight */
+  }
+  .ball {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer; /* Change cursor to pointer when hovering over ball */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5); /* slight glow effect */
+  }
+  #audio {
+    display: none; /* Hide audio element */
+  }
+</style>
+</head>
+<body>
+  <div class="title">SKIBIDI TOILET</div>
+  <div class="ball" id="ball"></div>
+  <audio id="audio" loop>
+    <source src=""C:\Users\bamah\Downloads\skibidi-toilet-big_xR734mJ.mp3"" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    const ball = document.getElementById('ball');
+    const audio = document.getElementById('audio');
+
+    let isPlaying = false;
+    let pulseInterval;
+
+    // Toggle audio and start/stop pulse when the ball is clicked
+    ball.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play();
+        isPlaying = true;
+        startPulse();
+      } else {
+        audio.pause();
+        audio.currentTime = 0; // Resets audio to beginning
+        isPlaying = false;
+        stopPulse();
+      }
+    });
+
+    // Function to start the pulsing effect
+    function startPulse() {
+      pulseInterval = setInterval(() => {
+        // Change the scale of the ball smoothly
+        const scale = 1 + Math.random() * 0.5; // Adjust the range for pulsing effect
+        ball.style.transform = `scale(${scale})`;
+      }, 100); // Adjust the interval for pulsing effect
+    }
+
+    // Function to stop the pulsing effect
+    function stopPulse() {
+      clearInterval(pulseInterval);
+      // Reset the scale of the ball smoothly
+      ball.style.transform = 'scale(1)';
+    }
+  </script>
+</body>
+</html>
